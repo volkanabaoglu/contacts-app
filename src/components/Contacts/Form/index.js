@@ -1,15 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Form = () => {
+const initialFormValues = { fullname: "", phone_number: "" };
+
+const Form = ({ addContact, contacts }) => {
+  const [form, setForm] = useState({ fullname: "", phone_number: "" });
+
+  const onChangeInput = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = (e) => {
+    //F5 Block
+    e.preventDefault();
+
+    addContact([...contacts, form]);
+
+    // Reset Form
+    setForm(initialFormValues);
+  };
+
   return (
-    <div>
+    <form onSubmit={onSubmit}>
       <div>
-        <input name="fullname" placeholder="Name"/>
+        <input
+          onChange={onChangeInput}
+          name="fullname"
+          placeholder="Name"
+          value={form.fullname}
+          required
+        />
       </div>
       <div>
-        <input phone="phone_number" placeholder="Phone" />
+        <input
+          onChange={onChangeInput}
+          name="phone_number"
+          placeholder="Phone"
+          value={form.phone_number}
+          required
+        />
       </div>
-    </div>
+      <div>
+        <button type="submit">Add</button>
+      </div>
+    </form>
   );
 };
 
