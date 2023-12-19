@@ -4,10 +4,10 @@ const Form = () => {
   return (
     <div>
       <div>
-        <input name="fullname" />
+        <input name="fullname" placeholder="Name"/>
       </div>
       <div>
-        <input phone="phone_number" />
+        <input phone="phone_number" placeholder="Phone" />
       </div>
     </div>
   );
